@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Rohan Design</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <script>
+        function stopWatch() {
+            var startTime = Date.now();
+            document.write(startTime)
+            function getDelay() {
+                var elapsedTime = Date.now() - startTime;
+                alert(elapsedTime);
+            }
+            return getDelay();
+        }
+        document.writeln(stopWatch())
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+.button {
+    background-color: rgb(116, 116, 178);
+    border: none;
+    color: rgb(33, 29, 29);
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 50%;
+}
+
+.buttonRed {
+    background-color: red;
+}
+
+.buttonYellow {
+    background-color: yellow;
+}
+
+.buttonGreen {
+    background-color: yellowgreen;
+}

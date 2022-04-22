@@ -1,0 +1,7 @@
+#main {
+
+    background-color: aqua, 
+    border 5px solid #FFFF00;
+    display: flex;
+    justify-content: center;
+}
