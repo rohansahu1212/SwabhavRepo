@@ -4,14 +4,33 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ReadDataTest {
 	public static void main(String[] args) throws IOException {
 		Path filepath = Paths.get("DBFile.txt");
-		Files.lines(filepath).forEach(ReadDataTest::printDetails);
+		
+		HashSet<Employee> empList = new HashSet<Employee>();
+		
+		@SuppressWarnings("unchecked")
+		HashSet<Employee> data = (HashSet<Employee>) Files.lines(filepath).map(x -> {
+			return x.split(",");
+		}).map(x -> {
+			return(new Employee(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7]));
+		}).collect(Collectors.toSet());
+
+//    empList.stream()
+//    .filter(e->e.getJobId().contains("NULL"))
+//    .forEach(x->{
+//    	System.out.println(x.getEmployeeName());
+//    	});
+//		
+		data.forEach(x->{System.out.println(x.getEmployeeName());});
+
 	}
 
-	private static void printDetails(String line) {
-		System.out.println(line);
-	}
 }

@@ -3,25 +3,33 @@ package com.monocept.model;
 import java.util.Iterator;
 
 public class NamesArrayIterator implements Iterator {
-     private int index;
+     private int index=0;
      private NameRepositary repo;
      
      
-	public NamesArrayIterator(int index, NameRepositary repo) {
-		this.index = index;
+	public NamesArrayIterator( NameRepositary repo) {
 		this.repo = repo;
 	}
 
 	@Override
 	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return repo!=null;
+		return index < repo.getNames().length;
+	}
+
+	public NameRepositary getRepo() {
+		return repo;
+	}
+
+	public void setRepo(NameRepositary repo) {
+		this.repo = repo;
 	}
 
 	@Override
 	public Object next() {
-		// TODO Auto-generated method stub
-		return null;
+		Object value= repo.getNames()[index];
+		index++;
+		
+		return value;
 	}
 
 }
