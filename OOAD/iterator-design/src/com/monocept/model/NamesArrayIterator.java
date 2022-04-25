@@ -20,9 +20,6 @@ public class NamesArrayIterator implements Iterator {
 		return repo;
 	}
 
-	public void setRepo(NameRepositary repo) {
-		this.repo = repo;
-	}
 
 	@Override
 	public Object next() {

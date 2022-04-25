@@ -20,12 +20,13 @@ public class ReadDataTest {
 	public static void main(String[] args) throws IOException {
 		Path filepath = Paths.get("DBFile.txt");
 
+		HashSet<Employee> empUrlList = new HashSet<Employee>();
 
 		HashSet<Employee> empList = (HashSet<Employee>) Files.lines(filepath).map(x -> x.split(",")).map(x -> {
 			return (new Employee(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7]));
 		}).collect(Collectors.toSet());
 
-	
+		empUrlList.forEach(x -> System.out.println(x.getEmployeeName()));
 
 		// find ceo
 		empList.stream().filter(e -> e.getJobId().contains("NULL")).forEach(x -> {
