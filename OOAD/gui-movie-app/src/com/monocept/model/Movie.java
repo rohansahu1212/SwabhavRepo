@@ -3,14 +3,19 @@ package com.monocept.model;
 import java.io.Serializable;
 
 public class Movie implements Serializable {
+	@Override
+	public String toString() {
+		return "name=" + name + ", genre=" + genre + ", year=" + year + "\n";
+	}
+
 	private String name;
 	private String genre;
-	private int year;
+	private String year;
 
-	public Movie(String name, String genre, int year) {
+	public Movie(String name, String genre, String year2) {
 		this.name = name;
 		this.genre = genre;
-		this.year = year;
+		this.year = year2;
 	}
 
 	public String getName() {
@@ -21,7 +26,7 @@ public class Movie implements Serializable {
 		return genre;
 	}
 
-	public int getYear() {
+	public String getYear() {
 		return year;
 	}
 

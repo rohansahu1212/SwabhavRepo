@@ -10,8 +10,8 @@ import javax.swing.JTextField;
 public class GuiMovieTest {
 
 	public static void main(String[] args) {
-
+		MovieMenu gf = new MovieMenu();
+		gf.frame();
 	}
-	
 
 }

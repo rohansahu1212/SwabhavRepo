@@ -1,0 +1,1 @@
+SELECT * FROM emp WHERE JOB IN ("clerk","manager") AND DEPTNO =10;
