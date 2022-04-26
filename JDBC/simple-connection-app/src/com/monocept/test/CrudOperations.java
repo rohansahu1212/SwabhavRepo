@@ -8,21 +8,14 @@ import java.sql.SQLException;
 
 import com.mysql.cj.xdevapi.Statement;
 
-public class ConnectionTest {
+public class CrudOperations {
 	Connection connection = null;
 
-	public ConnectionTest() throws SQLException {
+	public CrudOperations() throws SQLException {
 		this.connection = DriverManager
 				.getConnection("jdbc:mysql://localhost:3306/monocept?useSSL=false&serverTimezone=UTC", "root", "root");
 	}
 
-	public static void main(String[] args) throws SQLException {
-
-		ConnectionTest ct = new ConnectionTest();
-		// ct.dataEnter(71, "vijay");
-		ct.dataAlter(2, "shikhar");
-		ct.Display();
-	}
 
 	void dataEnter(int num, String name) throws SQLException {
 		System.out.println();
@@ -33,7 +26,7 @@ public class ConnectionTest {
 		System.out.println("Data entered");
 	}
 
-	private void dataAlter(int roll, String name) throws SQLException {
+	void dataAlter(int roll, String name) throws SQLException {
 
 		System.out.println();
 		String sql = "UPDATE students SET studentName = '" + name + "' WHERE studentId =" + roll + ""; //
@@ -44,7 +37,7 @@ public class ConnectionTest {
 		System.out.println("Data update");
 	}
 
-	void Display() {
+	void display() {
 		try {
 			PreparedStatement ps = connection.prepareStatement("select * from students");
 			ResultSet resultSet;
