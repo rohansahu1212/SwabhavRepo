@@ -1,0 +1,1 @@
+INSERT INTO customer VALUES (2,"rohan",20000);
