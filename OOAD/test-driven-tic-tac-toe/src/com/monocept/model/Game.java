@@ -19,10 +19,10 @@ public class Game {
 	public Player getCurrentPlayer() {
 		return players[turn%2];
 	}
-	public void play(int celllocation) {
+	public Result play(int celllocation) {
 		board.markAtCellLocation(celllocation, players[turn%2].getMrk());
 		turn++;
-		result=resultAnal.analyzeResult();
+		return resultAnal.analyzeResult();
 	}
 	public Result getResult() {
 		return result;

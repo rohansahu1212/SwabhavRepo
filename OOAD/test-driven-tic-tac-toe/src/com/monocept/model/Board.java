@@ -25,5 +25,8 @@ public class Board {
 		return cell;
 	}
 
+	public Cell getSpecificCell(int index) {
+		return cell[index];
+	}
 
 }
