@@ -21,6 +21,7 @@ public class TicTacUiFrame extends JFrame implements ActionListener {
 	JLabel textArea = new JLabel();
 	JButton[] buttons = new JButton[9];
 	private Game game;
+	private int i = 0;
 
 	public TicTacUiFrame(Game game) {
 		this.game = game;
@@ -47,8 +48,9 @@ public class TicTacUiFrame extends JFrame implements ActionListener {
 			button_panel.add(buttons[i]);
 			buttons[i].setFocusable(false);
 			buttons[i].setText("" + (i + 1));
-			//buttons[i].id;
-			
+
+			// buttons[i].id;
+
 			buttons[i].setFont(new Font("MV bolvi", Font.BOLD, 50));
 			buttons[i].addActionListener(this);
 		}
@@ -69,35 +71,33 @@ public class TicTacUiFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Player currentPlayer = game.getCurrentPlayer();
 		textArea.setText(currentPlayer.getName() + " just make move wiht mark " + currentPlayer.getMrk().toString());
-		for (int i = 0; i < 9; i++) {
-			if (e.getSource() == buttons[i]) {
-				System.out.println(e.TEXT_EVENT_MASK);
-				buttons[i].setEnabled(false);
-				buttons[i].setText(game.getCurrentPlayer().getMrk().toString());
-				Result progress = game.play(i);
-				System.out.println(progress);
+		JButton buttonClick = (JButton) e.getSource();
+		int cellValue=Integer.parseInt(buttonClick.getText());  
+		
+		System.out.println(e.TEXT_EVENT_MASK);
+		buttonClick.setEnabled(false);
+		buttonClick.setText(game.getCurrentPlayer().getMrk().toString());
+		Result progress = game.play(cellValue-1);//// should insert exact value
+		System.out.println(progress);
 
-				if (progress == Result.DRAW) {
-					new GameLoginUI().loginFrame();
-					JButton button = (JButton) e.getSource();
-					Window window = SwingUtilities.windowForComponent(button);
-					window.dispose();
-
-				}
-				if (progress == Result.WIN) {
-					for (int i1 = 0; i1 < 9; i1++)
-						buttons[i1].setEnabled(false);
-					new WinFrame(currentPlayer.getName()).winnnerFrame();
-
-					JButton button = (JButton) e.getSource();
-					Window window = SwingUtilities.windowForComponent(button);
-					window.dispose();
-					System.out.println("winnnnnnnnnnnnnnnnnnn");
-				}
-
-			}
+		if (progress == Result.DRAW) {
+			new GameLoginUI().loginFrame();
+			JButton button = (JButton) e.getSource();
+			Window window = SwingUtilities.windowForComponent(button);
+			window.dispose();
 
 		}
+		if (progress == Result.WIN) {
+			for (int i1 = 0; i1 < 9; i1++)
+				buttons[i1].setEnabled(false);
+			new WinFrame(currentPlayer.getName()).winnnerFrame();
+
+			JButton button = (JButton) e.getSource();
+			Window window = SwingUtilities.windowForComponent(button);
+			window.dispose();
+			System.out.println("winnnnnnnnnnnnnnnnnnn");
+		}
+
 	}
 
 }
