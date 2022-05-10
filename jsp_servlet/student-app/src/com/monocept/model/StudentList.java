@@ -7,21 +7,21 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class StudentList {
-	List<String > students;
+	List<Student> students;
 	
 	public StudentList() {
 		
-		students = new  ArrayList<String>();
+		students = new  ArrayList<Student>();
+		students.add(new Student("rohan", "sahu", 42, 8.6));
+		students.add(new Student("ankit", "ram", 43, 8.6));
+		students.add(new Student("vijay", "omar", 44, 8.6));
+		students.add(new Student("ankit", "singh", 45, 8.6));
+		students.add(new Student("dhanush", "katiyar", 46, 8.6));
 		
-		students.add("Rohan sahu");
-		students.add("vijay chuahan");
-		students.add("Ankit pandey");
-		students.add("alia bhatt");
-		students.add("Kangna ranaout");
-		students.add("Ajay devgan");
+		
 	}
 
-	public List<String> getStudents(){
+	public List<Student> getStudents(){
 		return students;
 	}
 

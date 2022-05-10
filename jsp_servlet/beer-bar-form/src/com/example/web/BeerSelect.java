@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,9 +33,13 @@ public class BeerSelect extends HttpServlet {
 		List result = be.getBrands(c);
 
 		out.println("Beer Selection Advice<br>");
+		
+		request.setAttribute("styles", result);
+		 RequestDispatcher view = request.getRequestDispatcher("BeerJsp.jsp");
+		 view.forward(request, response);
 
-		for (Object beerName : result)
-			out.println("<br> try " + beerName.toString());
+//		for (Object beerName : result)
+//			out.println("<br> try ----" + beerName.toString());
 
 	}
 
