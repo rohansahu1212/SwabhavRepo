@@ -1,0 +1,47 @@
+package com.monocept.web;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.monocept.model.Student;
+import com.monocept.model.StudentService;
+
+
+@WebServlet("/addstudent")
+public class AddStudentController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public AddStudentController() {
+  System.out.println("add student  called");
+    }
+
+
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		RequestDispatcher view = req.getRequestDispatcher("addStudent.jsp");
+		view.forward(req, res);
+	}
+
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	
+		
+		System.out.println("Student do pos method");
+		String roll=req.getParameter("rollno");
+		String fname=req.getParameter("fname");
+		String lname=req.getParameter("lname");
+		String cgpa=req.getParameter("cgpa");
+		System.out.println(roll+" "+cgpa+" "+fname+" "+lname);
+		if(roll!=null && fname!=null && lname!=null && cgpa!=null) {
+			Student student= new Student(fname, lname,Integer.valueOf(roll), Double.valueOf(cgpa));
+			StudentService.getObject().addStudent(student);
+			res.sendRedirect("http://localhost:8090/student-app/homecon");  
+		}
+	}
+
+}

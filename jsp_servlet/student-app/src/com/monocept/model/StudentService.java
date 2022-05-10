@@ -6,10 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class StudentList {
-	List<Student> students;
+public class StudentService {
+	private  List<Student> students;
+	private static StudentService stud=null;
 	
-	public StudentList() {
+	private StudentService() {
 		
 		students = new  ArrayList<Student>();
 		students.add(new Student("rohan", "sahu", 42, 8.6));
@@ -20,9 +21,20 @@ public class StudentList {
 		
 		
 	}
+	public void addStudent(Student student) {
+		students.add(student);
+		System.out.println("student added");
+	}
 
 	public List<Student> getStudents(){
 		return students;
 	}
+	public static StudentService getObject() {
+		if(stud==null)
+			stud= new StudentService();
+		return stud;
+		
+	}
+	
 
 }
