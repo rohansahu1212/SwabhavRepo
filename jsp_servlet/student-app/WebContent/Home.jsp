@@ -1,3 +1,4 @@
+<%@page import="com.monocept.model.UserDTO"%>
 <%@page import="com.monocept.model.StudentService"%>
 <%@page import="com.monocept.model.Student"%>
 <%@page import="java.util.List"%>
@@ -25,6 +26,14 @@ html>
 		<%
 		List<Student> students = (List) request.getAttribute("studentList");
 	out.print(students.size());
+	UserDTO dto = (UserDTO) session.getAttribute("login");
+	if (dto != null) {
+		out.print(dto.getName());
+		out.print("&emsp;<a href=\"logoutcon\" class=\"btn btn-primary\" role=\"button\" name = \"\"<td>logot</a></td>");
+	} else {
+		out.print("&emsp;<a href=\"logincon\" class=\"btn btn-primary\" role=\"button\" name = \"\"<td>login</a></td>");
+
+	}
 	%>
 	</h1>
 
@@ -41,7 +50,18 @@ html>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
-
+	<script>
+		function myFunction() {
+			let text;
+			if (confirm("Press a button!") == true) {
+				text = "You pressed OK!";
+				return true;
+			} else {
+				text = "You canceled!";
+				return false;
+			}
+		}
+	</script>
 
 	<table class="table">
 		<thead>
@@ -53,13 +73,14 @@ html>
 			</tr>
 			<%
 				//	List<Student> students = (List) request.getAttribute("studentList");
-			int count=0;
+			int count = 0;
 			for (Student std : students) {
 				out.println("<tr><td>" + std.getRollNo() + "</td><td>" + std.getFirstName() + "</td><td>" + std.getLastName()
-				+ "</td><td>" + std.getCgpa() + "<td><a href=\"edit?id="+count+"\" class=\"btn btn-primary\" role=\"button\" name = " + count
-				+ "<td>edit</a></td></tr>");
+				+ "</td><td>" + std.getCgpa() + "<td><a href=\"edit?id=" + count
+				+ "\" class=\"btn btn-primary\" role=\"button\" name = " + count + "<td>edit</a></td>"
+				+ "</td><td><td><a onclick=\"myFunction()\" href=\"edit?id=" + count
+				+ "\" class=\"btn btn-danger\" role=\"button\" name = " + count + "<td>Delete</a></td></tr>");
 				count++;
-
 			}
 			%>
 		

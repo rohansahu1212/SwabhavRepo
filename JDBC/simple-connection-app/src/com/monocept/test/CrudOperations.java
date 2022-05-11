@@ -29,7 +29,7 @@ public class CrudOperations {
 	void dataAlter(int roll, String name) throws SQLException {
 
 		System.out.println();
-		String sql = "UPDATE students SET studentName = '" + name + "' WHERE studentId =" + roll + ""; //
+		String sql = "UPDATE students SET Name = '" + name + "' WHERE studentID =" + roll + ""; //
 		//
 		PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -46,7 +46,7 @@ public class CrudOperations {
 			String title;
 			while (resultSet.next()) {
 				code = resultSet.getInt("studentId");
-				title = resultSet.getString("studentName").trim();
+				title = resultSet.getString("Name").trim();
 				System.out.println("Student ID : " + code + " Student : " + title);
 			}
 

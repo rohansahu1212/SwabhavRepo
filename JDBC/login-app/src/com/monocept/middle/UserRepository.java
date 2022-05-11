@@ -12,7 +12,7 @@ public class UserRepository {
 	public UserData authenticate(String username,String password) {
 		try {
 			Connection connection = DriverManager.getConnection(
-					"jdbc:mysql://localhost:4040/swabhav_tech?useSSL=false&serverTimezone=UTC", "root", "root");
+					"jdbc:mysql://localhost:3306/swabhav_tech?useSSL=false&serverTimezone=UTC", "root", "root");
 
 			String query = "SELECT * from USERDATA WHERE USERNAME = ? AND USERPASSWORD = ? ;";
 

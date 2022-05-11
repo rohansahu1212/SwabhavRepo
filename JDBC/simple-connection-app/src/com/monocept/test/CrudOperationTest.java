@@ -7,7 +7,7 @@ public class CrudOperationTest {
 
 		CrudOperations ct = new CrudOperations();
 		// ct.dataEnter(71, "vijay");
-		ct.dataAlter(2, "shikhar");
+		ct.dataAlter(2, "ankit uadav");
 		ct.display();
 	}
 }

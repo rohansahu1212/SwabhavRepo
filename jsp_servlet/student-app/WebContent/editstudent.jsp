@@ -41,24 +41,76 @@
 		List<Student> student= StudentService.getObject().getStudents();
 		System.out.print(id+"from student");
 		%>>
-	<form action="http://localhost:8090/student-app/edit" method="post">
+			<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		function validate() {
+			alert("hey validation in edit")
+			var fname = $('#fname').val();
+			var lname = $('#lname').val();
+			var rollno = $('#rollno').val();
+			var cgpa = $('#cgpa').val();
+		    var regex = /^[1-9]\d*(\.\d+)?$/;
+			if(rollno.trim()==""){
+				alert("roll can't be bank");
+				return false;
+			}
+			if(fname.trim()==""){
+				alert("first name can't be bank");
+				return false;
+			}
+			if(lname.trim()==""){
+				alert("last name can't be bank");
+				return false;
+			}
+			if(cgpa.trim()==""){
+				alert("cgpa can't be bank");
+				return false;
+			}
+     
+            if(regex.test(cgpa)){
+             
+                
+            }
+            else {
+				alert("it's not valid cgpa" + cgpa);
+				return false;
+			}
+            
+            if(regex.test(rollno)){
+             
+                
+                
+            }
+            else {
+				alert("it's not valid roll  " + rollno);
+				return false;
+			}
+		
+		}
+	</script>
+		
+		
+	<form  onsubmit="return validate();"  action="http://localhost:8090/student-app/edit" method="post">
 		<div class="form-floating mb-3">
-			<input type="text" class="form-control" id="floatingInput"
-				placeholder="<%out.print(student.get(id).getRollNo()); %> " name="rollno" value="<%out.print(student.get(id).getRollNo()); %>"> 
+			<input type="text" class="form-control" 
+				placeholder="<%out.print(student.get(id).getRollNo()); %> " id ="rollno" name="rollno" value="<%out.print(student.get(id).getRollNo()); %>"> 
 		</div>
 		<div class="form-floating">
-			<input type="text" class="form-control" id="floatingPassword"
-				placeholder="<%out.print(student.get(id).getFirstName()); %> " name="fname" value="<%out.print(student.get(id).getFirstName()); %>">
+			<input type="text" class="form-control"
+				placeholder="<%out.print(student.get(id).getFirstName()); %> " id="fname" name="fname" value="<%out.print(student.get(id).getFirstName()); %>">
 				<br> 
 		</div>
 		<div class="form-floating">
-			<input type="text" class="form-control" id="floatingPassword"
-				placeholder="no " name="lname" value="<%out.print(student.get(id).getLastName()); %>">
+			<input type="text" class="form-control" 
+				placeholder="no " id="lname" name="lname" value="<%out.print(student.get(id).getLastName()); %>">
 				<br> 
 		</div>
 		<div class="form-floating">
-			<input type="text" class="form-control" id="floatingPassword"
-				placeholder="<%out.print(student.get(id).getCgpa()); %> " name="cgpa" value="<%out.print(student.get(id).getCgpa()); %>">
+			<input type="text" class="form-control"
+				placeholder="<%out.print(student.get(id).getCgpa()); %> " id="cgpa" name="cgpa" value="<%out.print(student.get(id).getCgpa()); %>">
 				<br> 
 		</div>
 		<input type="submit" value="Edit">

@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.monocept.model.Student;
 import com.monocept.model.StudentService;
+import com.monocept.model.UserDTO;
 
 
 @WebServlet("/edit")
@@ -27,6 +29,13 @@ public class EditStudentController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		id=Integer.valueOf(req.getParameter("id"));
 		System.out.println("hey in do get "+ id);	
+		HttpSession session = req.getSession();
+		
+		UserDTO dto = (UserDTO) session.getAttribute("login");
+		if (dto == null) {
+			res.sendRedirect("http://localhost:8090/student-app/logincon");
+			return;
+		}
 		
 		RequestDispatcher view = req.getRequestDispatcher("editstudent.jsp");
 		view.forward(req, res);
