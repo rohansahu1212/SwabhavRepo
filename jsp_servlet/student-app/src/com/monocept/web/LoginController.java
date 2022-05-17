@@ -28,7 +28,7 @@ public class LoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		System.out.println("in login conn postt");
+	//	System.out.println("in login conn postt");
 
 		int id = Integer.valueOf(req.getParameter("id"));
 		String pass = req.getParameter("pass");
@@ -39,10 +39,9 @@ public class LoginController extends HttpServlet {
 		HttpSession session=req.getSession();  
     
 		session.setAttribute("login",dto);
-		session.setAttribute("wayto","hehehehe");
-		System.out.println("user dto   "+dto);
+
 		
-		res.sendRedirect("http://localhost:8090/student-app/homecon");  
+		res.sendRedirect("homecon");  
 		
 		
 

@@ -1,6 +1,12 @@
 package com.monocept.web;
 
 import java.io.IOException;
+import java.rmi.dgc.DGC;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.monocept.model.Student;
-import com.monocept.model.StudentService;
-import com.monocept.model.UserDTO;
 
 @WebServlet("/addstudent")
 public class AddStudentController extends HttpServlet {
@@ -36,12 +40,40 @@ public class AddStudentController extends HttpServlet {
 		String fname = req.getParameter("fname");
 		String lname = req.getParameter("lname");
 		String cgpa = req.getParameter("cgpa");
-		System.out.println(roll + " " + cgpa + " " + fname + " " + lname);
-		if (roll != null && fname != null && lname != null && cgpa != null) {
-			Student student = new Student(fname, lname, Integer.valueOf(roll), Double.valueOf(cgpa));
-			StudentService.getObject().addStudent(student);
-			res.sendRedirect("homecon");
+		
+		double dcgpa=Double.valueOf(cgpa);
+		
+		int id= Integer.valueOf(roll);
+		 
+		System.out.println("in add page post----------------------");
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rohandbms?useSSL=false&serverTimezone=UTC",
+					"root", "root");
+			System.out.println(con.getClass());
+		} catch (ClassNotFoundException e) {
+			System.out.println(e + "   from class not found");
+			e.printStackTrace();
+		} catch (SQLException e1) {
+			System.out.println(e1 + "   sql exception");
+			e1.printStackTrace();
 		}
+		PreparedStatement ps;
+		try {
+			ps = con.prepareStatement("INSERT INTO student VALUES("+id+",?,?,"+dcgpa+")");
+			ps.setString(1, fname);
+			ps.setString(2, lname);
+			ps.execute();
+		} catch (SQLException e) {	
+			e.printStackTrace();
+			System.out.println("--------- "+e);
+		}
+		
+		RequestDispatcher view = req.getRequestDispatcher("home.jsp");
+		view.forward(req, res);
+		
+	
 	}
 
 }

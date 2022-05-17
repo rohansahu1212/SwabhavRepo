@@ -54,22 +54,14 @@
                     success: function(result){
                     	console.log(result+" by getting response")
                         if(result==true)
-                        	$("#idlebel").html(" roll no already taken");
-                        else{
-                        	$("#idlebel").html(" ");
-                        	
-                        	
-                        }
+                        	$("#idlebel").html(" roll no taken");
+                        else
+                        	$("#idlebel").html(" it exits ");
                     }
                 })
 			});
- 
+
 		});
-		
-		
-		///
-	
-		
 	</script>
 
 	<script type="text/javascript">
@@ -115,7 +107,7 @@
 		}
 	</script>
 	<form onsubmit="return validate();"
-		action="http://localhost:8090/student-app/addstudent" method="post">
+		action="addstudent" method="post">
 		<div class="form-floating mb-3">
 			<input type="text" class="form-control" id="rollno"
 				placeholder="Enter roll " name="rollno">

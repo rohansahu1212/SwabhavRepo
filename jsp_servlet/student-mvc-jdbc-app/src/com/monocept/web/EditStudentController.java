@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.monocept.model.Student;
-import com.monocept.model.StudentService;
-import com.monocept.model.UserDTO;
+import com.monocept.service.StudentService;
+
 
 
 @WebServlet("/edit")

@@ -1,5 +1,4 @@
-<%@page import="com.monocept.model.UserDTO"%>
-<%@page import="com.monocept.model.StudentService"%>
+<%@page import="com.monocept.service.StudentService"%>
 <%@page import="com.monocept.model.Student"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"%>
@@ -24,16 +23,9 @@ html>
 	<h1>
 		Number of Student
 		<%
-		List<Student> students = (List) request.getAttribute("studentList");
+		List<Student> students = StudentService.getObject().getStudents();
 	out.print(students.size());
-	UserDTO dto = (UserDTO) session.getAttribute("login");
-	if (dto != null) {
-		out.print(dto.getName());
-		out.print("&emsp;<a href=\"logoutcon\" class=\"btn btn-primary\" role=\"button\" name = \"\"<td>logot</a></td>");
-	} else {
-		out.print("&emsp;<a href=\"logincon\" class=\"btn btn-primary\" role=\"button\" name = \"\"<td>login</a></td>");
 
-	}
 	%>
 	</h1>
 
@@ -80,7 +72,9 @@ html>
 				out.println("<tr><td>" + std.getRollNo() + "</td><td>" + std.getFirstName() + "</td><td>" + std.getLastName()
 				+ "</td><td>" + std.getCgpa() + "<td><a href=\"edit?id=" + count
 				+ "\" class=\"btn btn-primary\" role=\"button\" name = " + count + "<td>edit</a></td>"
-				+ "</td><td><td><a onclick=\"myFunction()\" href=\"deletecon?id=" + count
+				+ "</td><td><td><a href=\"coursecon?id="+count
+				+ "\" class=\"btn btn-info\" role=\"button\" name = " + count + "<td>Courses taken</a></td>"
+				+"<td><a onclick=\"myFunction()\" href=\"deletecon?id=" + count
 				+ "\" class=\"btn btn-danger\" role=\"button\" name = " + count + "<td>Delete</a></td></tr>");
 				count++;
 			}
