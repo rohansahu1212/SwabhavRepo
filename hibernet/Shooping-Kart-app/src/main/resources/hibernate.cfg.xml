@@ -5,17 +5,17 @@
 
 <hibernate-configuration>
 	<session-factory>
+	
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/indiadb</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/shoping1</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">root</property>
 		<property name="show_sql">true</property>
 		<property name="hibernate.dialect"> org.hibernate.dialect.MySQLDialect</property>
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create</property>
 		<property name="format_sql">true</property>
-		<mapping class="com.monocept.model.Account" />
-		<mapping class="com.monocept.model.Transection" />
-		<mapping class="com.monocept.model.Department" />
-		<mapping class="com.monocept.model.Employee" />
+		<mapping class="com.monocept.model.LineItem" />
+		<mapping class="com.monocept.model.Order" />
+		<mapping class="com.monocept.model.Product" />
 	</session-factory>
 </hibernate-configuration>

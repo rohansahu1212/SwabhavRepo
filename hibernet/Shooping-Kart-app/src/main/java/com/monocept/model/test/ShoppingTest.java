@@ -1,6 +1,8 @@
 package com.monocept.model.test;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.hibernate.Session;
@@ -8,12 +10,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import com.monocept.model.Account;
-import com.monocept.model.Department;
-import com.monocept.model.Employee;
-import com.monocept.model.Transection;
+import com.monocept.model.Customer;
+import com.monocept.model.LineItem;
+import com.monocept.model.Order;
+import com.monocept.model.Product;
 
-public class AccountTest {
+public class ShoppingTest {
 	public static void main(String[] args) {
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate.cfg.xml");
@@ -27,28 +29,28 @@ public class AccountTest {
 		Transaction txn = session.beginTransaction();
 		System.out.println(txn.getClass());
 
-	Account account= new Account("mohan", "pass", 3000.67);
+		Product pr1 = new Product(2, "honey", 370, 12);
 
-		Transection txn1= new Transection(11,"with draw",200);
-		txn1.setAccount(account);
-		
-		Transection txn2= new Transection(12,"deposite",200);
-		txn2.setAccount(account);
+		LineItem li1 = new LineItem(2, 12, pr1);
 
-		Transection txn3= new Transection(13,"deposite",2700);
-		txn3.setAccount(account);
-	
-		Set<Transection> txns=new HashSet<Transection>();
+		pr1.setLineItem(li1);
 		
-		txns.add(txn1);
-		txns.add(txn2);
-		txns.add(txn3);
+		li1.setProduct(pr1);
 		
-       account.setTransections(txns);
+		List<LineItem> items= new ArrayList<LineItem>();
+		items.add(li1);
+		
+		Order or1= new Order(12,"rohan list");
+		
+		li1.setOrder(or1);
+		or1.setItems(items);
+		
 
-	
-		session.save(account);
+		session.save(or1);
+		//session.save(li1);
 
 		txn.commit();
+
+		System.out.println("end of main");
 	}
 }

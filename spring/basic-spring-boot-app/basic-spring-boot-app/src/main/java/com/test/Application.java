@@ -1,5 +1,6 @@
 package com.test;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -9,6 +10,8 @@ import com.swabhav.HowdyService;
 
 @SpringBootApplication(scanBasePackages = {"com.monocept","com.swabhav"})
 public class Application {
+	@Value("${message.howdy}")
+	String msg;
 
 	public static void main(String[] args) {
 		ApplicationContext cxt=   SpringApplication.run(Application.class);
@@ -21,6 +24,7 @@ public class Application {
 		
 		HowdyService sv2=(HowdyService) cxt.getBean("svc2");
 		System.out.println(sv2.getMessages());
+		
 		
 		
 		
