@@ -9,16 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
+
 @Entity
 public class Customer {
 	@Id
 	private int id;
 	private String name;
+
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-	private List<Order> orders = new ArrayList<Order>();
-  
-	
-	
+	private List<SOrder> orders = new ArrayList<SOrder>();
+
 	public Customer() {
 
 	}
@@ -36,11 +36,11 @@ public class Customer {
 		return name;
 	}
 
-	public List<Order> getOrders() {
+	public List<SOrder> getOrders() {
 		return orders;
 	}
 
-	public void addOrder(Order order) {
+	public void addOrder(SOrder order) {
 		orders.add(order);
 
 	}
@@ -57,7 +57,7 @@ public class Customer {
 		this.name = name;
 	}
 
-	public void setOrders(List<Order> orders) {
+	public void setOrders(List<SOrder> orders) {
 		this.orders = orders;
 	}
 }

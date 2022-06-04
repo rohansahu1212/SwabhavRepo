@@ -16,10 +16,8 @@ public class ImageUpload {
 		System.out.println(con.getClass());
 		 PreparedStatement pstmt = con.prepareStatement("INSERT INTO images VALUES(?,?)");
 	      pstmt.setString(1, "image1");
-	      //Inserting Blob type
 	      InputStream in = new FileInputStream("images\\pic2.jpeg");
-	      pstmt.setBlob(2, in);
-	      //Executing the statement
+	      pstmt.setBlob(2, in); 
 	      pstmt.execute();
 	      System.out.println("Record inserted......");
 	}

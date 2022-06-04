@@ -18,9 +18,14 @@ public class StudentService {
 	}
 
 	public List<Student> getStudents() {
-		students = new StudentRepository().getStudents();
+		students = new StudentRepository().getStudents(0, 5);
 		return students;
 	}
+	public List<Student> getStudents(int startIndex, int size) {
+		students = new StudentRepository().getStudents(startIndex,size);
+		return students;
+	}
+
 
 	public static StudentService getObject() {
 		if (stud == null)

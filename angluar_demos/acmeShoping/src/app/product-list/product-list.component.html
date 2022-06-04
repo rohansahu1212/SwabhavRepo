@@ -1,0 +1,73 @@
+<div class="card text-center" style="width: 90rem">
+  <div
+    class="card-header"
+    style="text-align: left; background-color: burlywood"
+  >
+    <h3>Products List</h3>
+  </div>
+  <div class="card-body" id="search">
+    <br />
+
+    <div style="text-align: left">
+      <label for="search">Filter by:&nbsp;&nbsp;</label>
+      <input
+        type="text"
+        name="search"
+        id="productSearch"
+        [value]="srch"
+        [(ngModel)]="srch"
+      />
+    </div>
+    <br />
+    <br />
+    <br />
+    <div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th id="btn" scope="col">
+              <button class="btn btn-danger" (click)="showImages()">
+                {{button}}
+              </button>
+            </th>
+            <th scope="col">Product ID</th>
+            <th scope="col">Product name</th>
+            <th scope="col">Release date</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Star Rating</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let pro of products; let index = index">
+          <div *ngIf="pro.productName.startsWith(srch)">
+            <td>
+              <img
+                src="{{ pro.imageUrl }}"
+                class="figure-img img-fluid rounded"
+                width="50"
+                height="50"
+                
+                [style.visibility]="imgShow"
+              />
+            </td>
+
+            <td>{{ pro.productId }}</td>
+            <td>
+              <a href="/detail/?id={{ index }}">{{ pro.productName }}</a>
+            </td>
+            <td>{{ pro.releaseDate }} {{ index }}</td>
+            <td>{{ pro.description }}</td>
+            <td>{{ pro.price }}</td>
+            <!-- <td>{{ pro.starRating }}</td> -->
+            <!--  -->
+            <td>
+              <app-star [rating]="pro.starRating"></app-star>
+            </td>
+            <!--  -->
+          </div>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+

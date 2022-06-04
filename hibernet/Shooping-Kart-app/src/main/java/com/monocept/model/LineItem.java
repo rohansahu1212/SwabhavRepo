@@ -6,29 +6,29 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
 @Entity
 public class LineItem {
 	@Id
 	private int id;
 	private int quantity;
-	
-	@OneToOne(mappedBy = "line_Item",cascade = CascadeType.ALL)
-	private Product product;
-	@ManyToOne
-	@JoinColumn(name="Order_id")
-	private Order order;
-	
 
-	
+	@OneToOne
+	@JoinColumn
+	private Product product;
+
+	@ManyToOne
+	@JoinColumn
+	private SOrder sorder;
+
 	public LineItem() {
 
 	}
 
-	public LineItem(int id, int quantity, Product product) {
+	public LineItem(int id, int quantity) {
 
 		this.id = id;
 		this.quantity = quantity;
-		this.product = product;
 	}
 
 	public int getId() {
@@ -59,8 +59,8 @@ public class LineItem {
 		this.product = product;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrder(SOrder order) {
+		this.sorder = order;
 	}
 
 }

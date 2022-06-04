@@ -1,0 +1,36 @@
+<div class="container">
+  <form [formGroup]="frmLogin">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="userName"
+        aria-describedby="userName"
+        formControlName="username"
+      />
+      <div *ngIf="frmLogin.get('username')?.touched && 
+                  frmLogin.get('username')?.invalid"
+                  class="alert alert-danger">username is required</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" 
+      formControlName="userpwd"/>
+      <div *ngIf="frmLogin.get('userpwd')?.touched && 
+                  frmLogin.get('userpwd')?.invalid"
+                  class="alert alert-danger">password is required</div>
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" [disabled]="frmLogin.invalid" class="btn btn-primary">Submit</button>
+  </form>
+  <h1>form is valid :{{frmLogin.valid}}</h1>
+  <h1>control 1 is valid :{{frmLogin.get("username")?.valid}}</h1>
+  <h1>control 1 is valid :{{frmLogin.get("username")?.pristine}}</h1>
+  <h1>control 2 is valid :{{frmLogin.get("userpwd")?.valid}}</h1>
+  <h1>control 2 is valid :{{frmLogin.get("userpwd")?.pristine}}</h1>
+ 
+</div>

@@ -12,6 +12,7 @@ buttons.addEventListener('click', (e) => {
     if (e.target.id < 51 && boolvalue && count > 0) {
         //  alert(count);
         count -= 1
+        
         if (e.target.id > randomNum)
             e.target.classList.add("buttonRed");
         if (e.target.id < randomNum)

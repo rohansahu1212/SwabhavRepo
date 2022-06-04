@@ -1,0 +1,10 @@
+<p>todo-component works!</p>
+<div class="form-group">
+    <label for="exampleFormControlInput1">Enter Task</label>
+    <input type="text" class="form-control" id="one" [(ngModel)]="task" placeholder="Enter Task">
+    <br>
+    <br>
+    <input type="button" value="Submit" (click)="todo()">
+
+    <p *ngFor="let list of list">{{list}}</p>
+  </div>

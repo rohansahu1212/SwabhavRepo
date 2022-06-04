@@ -23,9 +23,20 @@ html>
 	<h1>
 		Number of Student
 		<%
-		List<Student> students = StudentService.getObject().getStudents();
+		
+		int count = 0;
+		int max = 0;
+		int pageid;
+		int startpage;
+		try {
+			pageid = Integer.valueOf(request.getParameter("id")) * 5;
+		} catch (Exception e) {
+			pageid = 0;
+		}
+	
+		System.out.println(max + " max value");
+		List<Student> students = StudentService.getObject().getStudents(pageid, 5);
 	out.print(students.size());
-
 	%>
 	</h1>
 
@@ -47,7 +58,7 @@ html>
 			let text;
 			if (confirm("You really wanna delete") == true) {
 				text = "You pressed OK!";
-				
+
 				return true;
 			} else {
 				text = "You canceled!";
@@ -67,14 +78,15 @@ html>
 			</tr>
 			<%
 				//	List<Student> students = (List) request.getAttribute("studentList");
-			int count = 0;
+		
+
+			//List list=students.getRecords(pageid,pageid+5);  
 			for (Student std : students) {
 				out.println("<tr><td>" + std.getRollNo() + "</td><td>" + std.getFirstName() + "</td><td>" + std.getLastName()
 				+ "</td><td>" + std.getCgpa() + "<td><a href=\"edit?id=" + count
 				+ "\" class=\"btn btn-primary\" role=\"button\" name = " + count + "<td>edit</a></td>"
-				+ "</td><td><td><a href=\"coursecon?id="+count
-				+ "\" class=\"btn btn-info\" role=\"button\" name = " + count + "<td>Courses taken</a></td>"
-				+"<td><a onclick=\"myFunction()\" href=\"deletecon?id=" + count
+				+ "</td><td><td><a href=\"coursecon?id=" + count + "\" class=\"btn btn-info\" role=\"button\" name = "
+				+ count + "<td>Courses taken</a></td>" + "<td><a onclick=\"myFunction()\" href=\"deletecon?id=" + count
 				+ "\" class=\"btn btn-danger\" role=\"button\" name = " + count + "<td>Delete</a></td></tr>");
 				count++;
 			}
@@ -85,5 +97,19 @@ html>
 	<br>
 	<a href="addstudent" class="btn btn-primary" role="button">Add
 		Student</a>
+	<br>
+	<br>
+
+	<%
+		int nextpage = pageid / 5 + 1;
+	int prevpage = nextpage - 2;
+	System.out.println(nextpage);
+	if (pageid > 0)
+		out.println("	<a href=\"homecon?id=" + prevpage + " \"   class=\"btn btn-dark\" role=\"button\">Previous page</a>");
+	%>
+	<%
+		System.out.println(nextpage);
+	out.println("	<a href=\"homecon?id=" + nextpage + " \"   class=\"btn btn-primary\" role=\"button\">Next Page</a>");
+	%>
 </body>
 </html>

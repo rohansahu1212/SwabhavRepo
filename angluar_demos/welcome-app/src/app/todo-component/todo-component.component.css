@@ -1,0 +1,5 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+input{
+    padding-left: 70px;
+    padding-right: 30px;
+}

@@ -1,0 +1,127 @@
+
+body{
+	margin: 0;
+	padding: 0;
+	background:#fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: sans-serif; 
+}
+#container{
+    display: block;
+    position: absolute;
+    top: 10%;
+    width: 1150px;
+    height:500px;
+    background: gray;
+    border-radius: 0px;
+}
+
+
+#startDiv{
+    width: 1000px;
+    height:500px;
+    transform: translate(0, -50%);
+}
+#startDiv h1{  
+    position: absolute;            
+    top: 55%;
+    left: 38%;
+    color: black;
+    font-size: 50px;
+}
+#startDiv p{  
+    position: absolute;            
+    top: 72%;
+    left: 33%;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    line-height: 28px;;
+}
+#rengeSelector{
+    width: 1000px;
+    height: 100px;
+    position: absolute;
+    top: 60%;
+    transform: translate(0, -50%);
+}
+#container #rengeSelector h3{  
+    position: absolute;            
+    top: 60%;
+    left: 50%;
+    color: #fff;
+    font-size: 20px;
+}
+
+#container #rengeSelector .myslider{
+    position: absolute;
+    top:30%;
+    left: 35.5%;
+    width: 40%;
+    margin:  10% auto;
+    -webkit-appearance: none;
+    height: 7px;
+    outline: none;
+    border-radius: 3px;
+}
+#container #rengeSelector p{
+    position: absolute;
+    top: 150%;
+    left: 48%;
+    color: #fff;
+}
+
+#container #rengeSelector .btn{
+    position: absolute;
+    top:190%;
+    left:48%;
+    background-color: rgb(46, 45, 45);
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+#container2{
+    display: flex;
+    flex-flow: row wrap;
+    position: absolute;
+    top: 10%;
+    width: 1150px;
+    height:500px;
+    background: gray;
+    border-radius: 15px;
+}
+
+#container2 #buttons{
+    position: relative;
+    top: 5%;
+    left: 1%;
+    align-content: space-between;
+    align-content: space-between;
+    width: 70px;
+    height: 70px;
+}
+
+#container2 #buttons .btn{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    text-align: center;
+    margin: 10px;
+    color: gray;
+    font-size: 15px;
+    border: 2px solid white ;
+}
+
+#count{
+    top: -50%;
+}
+#result{
+    position:absolute;
+    top:87.2%;
+}

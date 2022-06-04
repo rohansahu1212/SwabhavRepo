@@ -12,7 +12,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.monocept.model.Customer;
 import com.monocept.model.LineItem;
-import com.monocept.model.Order;
+import com.monocept.model.SOrder;
 import com.monocept.model.Product;
 
 public class ShoppingTest {
@@ -29,25 +29,23 @@ public class ShoppingTest {
 		Transaction txn = session.beginTransaction();
 		System.out.println(txn.getClass());
 
-		Product pr1 = new Product(2, "honey", 370, 12);
+		Customer cus1 = new Customer(102, "rohansahu");
 
-		LineItem li1 = new LineItem(2, 12, pr1);
+		SOrder or1 = new SOrder(112, "rohan list");
 
-		pr1.setLineItem(li1);
-		
-		li1.setProduct(pr1);
-		
-		List<LineItem> items= new ArrayList<LineItem>();
-		items.add(li1);
-		
-		Order or1= new Order(12,"rohan list");
-		
-		li1.setOrder(or1);
-		or1.setItems(items);
-		
+		Product pr1 = new Product(112, "dahi", 400, 23);
 
-		session.save(or1);
-		//session.save(li1);
+		LineItem item1 = new LineItem(102, 12);
+		item1.setOrder(or1);
+		item1.setProduct(pr1);
+
+		or1.setCustomer(cus1);
+		or1.addLineItem(item1);
+
+		cus1.addOrder(or1);
+
+		session.save(cus1);
+		session.save(pr1);
 
 		txn.commit();
 

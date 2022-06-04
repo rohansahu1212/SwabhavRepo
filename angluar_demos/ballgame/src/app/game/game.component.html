@@ -1,0 +1,33 @@
+<body>
+    <div id="container" ng-show="myVar" >
+        <div id="startDiv">            
+            <h1>Blue Ball Game</h1>      
+        </div>
+        <div id="rengeSelector">
+            <h3>Select Balls</h3>            
+            <div class="rangeslider">
+                <input type="range" min="10" max="70" value="30"  class="myslider" (input)="NumberOfBalls($event)"/>
+                <p>Number of balls: <span class="value">{{numberOfBalls}}</span></p>
+            </div>           
+            <button class="btn" (click)=btnHandler()>Start Game</button>
+        </div>   
+    </div>
+
+    <div id="count">
+        <h2>Turn Left:{{turnCount}}</h2>
+    </div>
+   
+    <div id="container2" *ngIf="isShown">
+        <div id="buttons" *ngFor="let ball of balls">
+        <input class="btn" type="button" 
+                (click)=GameLogic(ball.id,$event)
+                [style.background-color]="ball.color"
+                [value]="ball.description"/> 
+        </div>
+    </div>
+    
+    <div id=result>
+        <h1>{{result}}</h1>
+    </div>
+    
+</body>

@@ -29,7 +29,49 @@ public class StudentRepository {
 		}
 
 		try {
-			PreparedStatement ps = con.prepareStatement("select * from student");
+			PreparedStatement ps = con.prepareStatement("select * from student ");
+			ResultSet resultSet;
+			resultSet = ps.executeQuery();
+			int code;
+
+			while (resultSet.next()) {
+				int id = Integer.valueOf(resultSet.getInt("rollno"));
+				String fName = resultSet.getString("firstName").trim();
+				String lName = resultSet.getString("lastName").trim();
+				double cgpa = Double.valueOf(resultSet.getString("cgpa"));
+				System.out.println("roll : " + id + "  name : " + fName + " last name : " + lName + " cgpa : " + cgpa);
+				students.add(new Student(fName, lName, id, cgpa));
+			}
+
+			resultSet.close();
+			ps.close();
+			con.close();
+
+		} catch (Exception e) {
+
+		}
+		return students;
+	}
+	public List<Student> getStudents(int startIndex, int max) {
+		List<Student> students = new ArrayList<Student>();
+		Connection con = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rohandbms?useSSL=false&serverTimezone=UTC",
+					"root", "root");
+			System.out.println(con.getClass());
+		} catch (ClassNotFoundException e) {
+			System.out.println(e + "   from class not found");
+			e.printStackTrace();
+		} catch (SQLException e1) {
+			System.out.println(e1 + "   sql exception");
+			e1.printStackTrace();
+		}
+
+		try {
+			PreparedStatement ps = con.prepareStatement("select * from student limit ?,? ");
+			ps.setInt(1, startIndex);
+			ps.setInt(2, max);
 			ResultSet resultSet;
 			resultSet = ps.executeQuery();
 			int code;

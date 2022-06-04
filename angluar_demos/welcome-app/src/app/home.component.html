@@ -1,0 +1,13 @@
+<div>
+    <h1>hey</h1>
+   <h1> Company name is : {{company.name}}</h1>
+   
+   <h1> location is :{{company.location}}</h1>
+   <h1> head count is :{{company.headCounts}}</h1>
+   <h1> presenting in normal way :{{company.clients}}</h1>
+   <h1> presenting in json way :{{company.clients|json}}</h1>
+   <h1> dooin iteration</h1>
+   <li *ngFor="let clients of company.clients">{{clients}}</li>
+ 
+
+</div>

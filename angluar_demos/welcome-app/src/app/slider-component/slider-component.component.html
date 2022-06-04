@@ -1,0 +1,44 @@
+<p>slider-component works!</p>
+<label for="customRange2" class="form-label">Example range</label>
+<input
+  type="range"
+  [(ngModel)]="barRange"
+  class="form-range"
+  min="{{ minValue }}"
+  max="{{ maxValue }}"
+  id="customRange2"
+  (click)="barChange()"
+/>
+
+<h1>{{ barRange }}</h1>
+<br />
+<!-- <input
+  type="radio"
+  id="html"
+  name="fav_language"
+  value="hidden"
+  [(ngModel)]="status"
+/>
+<label for="html">Hide</label>
+<br>
+<input type="radio" id="css"   [(ngModel)]="status" name="fav_language" value="visible" />  
+<label for="css">unhide</label><br /> -->
+
+<input type="checkbox"  [(ngModel)]="status" value="hidden" (click)="barChange()" >
+<label for="vehicle1"> Hide using checkbox</label><br>
+
+<br />
+<br />
+<div >
+<button
+  type="button"
+  
+  *ngFor="let numbers of buttons; let index = index"
+ (click)="clickEvent($event)"
+  style="visibility: {{status}}"
+  value={{numbers}}>
+  {{ numbers }} this is index{{index}}</button><br />
+
+<br />
+</div>
+

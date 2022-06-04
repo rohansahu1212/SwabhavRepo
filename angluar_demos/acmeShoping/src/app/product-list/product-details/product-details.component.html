@@ -1,0 +1,26 @@
+<div class="card text-center" style="width: 88rem;" >
+    <div class=" card-header" style="text-align: left; background-color: burlywood;">
+        <h3>Product Details</h3>
+    </div>
+    <div class="card-body" id="search">
+        <img
+        src="{{ item.imageUrl }}"
+        class="figure-img img-fluid rounded"
+        width="300"
+        height="300"
+    
+      />
+       <h5>Product Id :{{item.productId}}</h5><br>
+       <h5>Product Name :{{item.productName}} </h5><br>
+       <h5>Product Code :{{item.productCode}}</h5><br>
+       <h5>Product Release Date :{{item.releaseDate}}</h5><br>
+
+        <h5>Rating</h5>
+        <div class="center" style="padding-left: 47%">
+            <app-star [rating]="item.starRating"></app-star>
+          </div>
+        
+        
+    </div>
+    <p>code writte by rohan</p>
+</div>
